@@ -1,0 +1,164 @@
+/* Estilos base - substitua todo o arquivo existente por este */
+
+/* ===== FUNDOS E LAYOUT ===== */
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background: linear-gradient(135deg, #8bbfbd, #b2b4b4);
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== CARD PRINCIPAL ===== */
+.container {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 30px 40px;
+  border-radius: 18px;
+  width: 460px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* ===== TÍTULOS ===== */
+h1 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 700;
+  color: #0f2f35;
+}
+
+h3 {
+  font-size: 19px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #163737;
+}
+
+/* ===== FORMULÁRIOS ===== */
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Inputs padrão */
+input[type="text"],
+input[type="search"],
+select,
+.task-edit-input,
+input:not([type]) {
+  padding: 10px 98px;
+  border-radius: 10px;
+  border: 1px solid #ccd7d7;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.16s ease-in-out;
+  font-size: 14px;
+}
+
+input[type="text"]:focus,
+.task-edit-input:focus,
+select:focus {
+  outline: none;
+  border-color: #4a8a8b;
+  box-shadow: 0 0 6px rgba(74,138,139,0.25);
+}
+
+/* ===== BOTÕES ===== */
+button {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #d3eceb;
+  transition: transform .12s ease, background .12s ease;
+}
+
+button:hover { transform: translateY(-2px); }
+
+button.edit-btn { background:#d6e5ff; }
+button.delete-btn { background:#ffd6d6; }
+
+/* ===== SEÇÕES E LISTAS ===== */
+section { margin-bottom: 25px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.5); }
+
+.container ul { list-style: none; padding-left: 0; margin: 10px 0 0 0; }
+
+/* --- FORÇA: limpa regras genéricas que possam conflitar --- */
+/* Remove qualquer display forçado em li antigo */
+.container ul li { list-style: none; }
+
+/* ===== ITEM DE TAREFA: LAYOUT CORRETO ===== */
+/* seletor específico para garantir prioridade e evitar conflitos */
+.container ul > li.task-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100%;
+  padding: 6px 0;
+  box-sizing: border-box;
+}
+
+/* Esquerda: checkbox + texto */
+.container ul > li.task-item > .task-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px;
+  flex: 1 1 auto;           /* ocupa o espaço disponível à esquerda */
+  justify-content: flex-start !important; /* cola na esquerda */
+  min-width: 0;             /* permite truncar/encaixar flex children corretamente */
+}
+
+/* Certifica que o checkbox esteja alinhado no início do bloco de tarefas */
+.container ul > li.task-item input[type="checkbox"] {
+  transform: scale(1.15);
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+/* Texto da tarefa: garante quebra e alinhamento à esquerda */
+.container ul > li.task-item .task-text {
+  font-size: 14px;
+  color: #244f4f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;        /* JUSTIFICADO À ESQUERDA conforme pedido */
+  display: inline-block;
+  max-width: calc(100% - 140px); /* evita colidir com botões (ajuste se necessário) */
+}
+
+/* Input de edição ocupa todo o espaço esquerdo disponível */
+.container ul > li.task-item .task-edit-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Botões ficam agrupados à direita */
+.container ul > li.task-item > .task-buttons {
+  display: flex !important;
+  gap: 8px;
+  flex: 0 0 auto; /* não encolhe além do necessário */
+  margin-left: 12px;
+}
+
+/* Forçar aparência dos botões pequenos */
+.container ul > li.task-item > .task-buttons button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/* Ajustes finais para responsividade */
+@media (max-width: 520px) {
+  .container { width: 92%; padding: 20px; }
+  .container ul > li.task-item .task-text { max-width: calc(100% - 110px); }
+}
